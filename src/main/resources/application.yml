@@ -1,0 +1,35 @@
+server:
+  port: 3000
+
+#management.endpoints.web.path-mapping.prometheus=whatever-you-want
+
+springdoc:
+  swagger-ui:
+    path=/swagger-ui.html
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - prometheus
+          - health
+      path-mapping:
+        prometheus: /metrics
+        health: /health
+      base-path: /
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+
+
+coddingchallendge:
+  version: 0.1.0
+  kubernetes: false
